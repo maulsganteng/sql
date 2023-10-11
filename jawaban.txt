@@ -1,0 +1,67 @@
+soal nomor 1.
+mysql> create database myshop;
+Query OK, 1 row affected (0.00 sec)
+
+soal nomor 2.
+
+MariaDB [myshop]> create table items(
+    -> name varchar(255),
+    -> description varchar(255),
+    -> price int,
+    -> stock int,
+    -> category_id int,
+    -> foreign key (category_id) references categories(id)
+    -> );
+Query OK, 0 rows affected (0.013 sec)
+
+MariaDB [myshop]> create table categories(
+    -> id int(8) primary key auto_increment,
+    -> name varchar(255)
+    -> );
+Query OK, 0 rows affected (0.004 sec)
+
+MariaDB [myshop]> create table users(
+    -> id int(8) primary key  auto_increment,
+    -> name varchar(255),
+    -> email varchar(255),
+    -> password varchar(255)
+    -> );
+Query OK, 0 rows affected (0.006 sec)
+
+soal nomor 3.
+
+MariaDB [myshop]> insert into users(name,email,password)
+    -> values ("john doe","johndoe@gmail.com","john123");
+Query OK, 1 row affected (0.001 sec)
+
+MariaDB [myshop]> insert into categories(name)
+    -> values ("gadget"),("cloth"),("men"),("women"),("branded")
+    -> ;
+Query OK, 5 rows affected (0.001 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+MariaDB [myshop]> insert into items(name,description,price,stock,category_id)
+    -> values ("samsungb50","hape keren dari merek samsung",40000,100,1),
+    -> ("imho watch","jam tangabn anak yang jujur banget",20000,10,1),
+    -> ("unikloh","baju keren dari brand ternama",50000,50,2);
+Query OK, 3 rows affected (0.001 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+soal nomor 4.
+ 
+a.mengambil data user
+MariaDB [myshop]> select id,name,email from users;
+
+b.Menampilkan data items join dengan kategori
+-MariaDB [myshop]> select * from items where price >10000;
+-MariaDB [myshop]> select * from items where name like 'uni%';
+
+c.Menampilkan data items join dengan kategori
+
+MariaDB [myshop]> select items.name,items.description,items.price,items.stock,items.category_id,categories.name from items inner join categories on items.category_id = categories.id;
+
+soal nomor 5.
+
+MariaDB [myshop]> update items set price=250000 where name="samsungb50";
+Query OK, 1 row affected (0.001 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
